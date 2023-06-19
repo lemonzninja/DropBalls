@@ -1,29 +1,30 @@
 using System;
+using _Scripts.Button;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private SpawneObjectsButton _spawneObjectsButton;
+    private SpawnObjectsButton _spawnObjectsButton;
     
     [SerializeField] private GameObject[] objectsToSpawn;
     [SerializeField] private Transform spawnPoint;
 
-    private float timer = 0f;
+    private float _timer = 0f;
     
     private void Start()
     {
-        _spawneObjectsButton = FindObjectOfType<SpawneObjectsButton>();
+        _spawnObjectsButton = FindObjectOfType<SpawnObjectsButton>();
     }
 
     private void Update()
     {
-        timer -= Time.deltaTime;
+        _timer -= Time.deltaTime;
         
-        if (_spawneObjectsButton.CanSpawn & timer <= 0)
+        if (_spawnObjectsButton.canSpawn & _timer <= 0)
         {
             SpawnObjects();            
-            _spawneObjectsButton.CanSpawn = false;
-            timer = 1f;
+            _spawnObjectsButton.canSpawn = false;
+            _timer = 1f;
         }
     }
     
